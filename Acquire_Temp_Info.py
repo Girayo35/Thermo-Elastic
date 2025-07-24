@@ -11,10 +11,10 @@ sheet=wb["Sheet2"]
 xlsx = pd.ExcelFile('All_Node_Information.xlsx')
 df = xlsx.parse('Sheet1')
 dt = xlsx.parse('Sheet2')
-time_steps_Solstice=[129120,133200,137760,146400,155040,163680,170160,176400,180960,189600,198240,206880,215520]
-time_steps_EQNX=[172800,175920,181440,190080,198720,207360,213840,217920,224640,233280,241920,250560,259200]
+time_steps_Solstice=[129120,133200,137760,146400,155040,163680,170160,176400,180960,189600,198240,206880,210000]
+time_steps_EQNX=[86400,89520,95040,103680,112320,120960,127440,131520,138240,146880,155520,164160,172800]
 Panels=[]
-for i in range(2,47):
+for i in range(2,49):
     Panels.append(ws["A"+str(i)].value)
 Node_List=[]
 
@@ -36,7 +36,7 @@ for i in range(0,len(time_steps_EQNX)):
     #for k in range (0,len(List)):
         List=Node_List[k]
         xlsx = pd.ExcelFile('Thermo_Elastic_Data.xlsx')
-        df = xlsx.parse("QNXBO_"+str(time_steps_EQNX[i]))
+        df = xlsx.parse("EQNXB_"+str(time_steps_EQNX[i]))
         df.columns = [" "," ",'Node', 'Temperature']
         b=[]
         for j in range(0,len(List)):

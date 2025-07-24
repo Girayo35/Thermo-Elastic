@@ -7,9 +7,9 @@ import random
 wb=openpyxl.load_workbook("Thermo_Elastic_Data.xlsx")
 ws=wb.active
 print ("here")
-file_name=["_ASG1_GLOBAL_MODEL_assyfem1_sim1-DSEOL_nastran_","_ASG1_GLOBAL_MODEL_assyfem1_sim2-JSEOL_nastran_","_ASG1_GLOBAL_MODEL_assyfem1_sim1-EQNXBOL_nastran_"]
-time_steps=["t129120","t133200","t137760","t146400","t155040","t163680","t170160","t176400","t180960","t189600","t198240","t206880","t215520"]
-time_steps_1=["t172800","t175920","t181440","t190080","t198720","t207360","t213840","t217920","t224640","t233280","t241920","t250560","t259200"]
+file_name=["_ASG1_GLOBAL_MODEL_assyfem1_sim1-DSEOL_nastran_","_ASG1_GLOBAL_MODEL_assyfem1_sim1-JSEOL_nastran_","_ASG1_GLOBAL_MODEL_assyfem1_sim1-EQNXBOL_nastran_"]
+time_steps=["t129120","t133200","t137760","t146400","t155040","t163680","t170160","t176400","t180960","t189600","t198240","t206880","t210000"]
+time_steps_1=["t86400","t89520","t95040","t103680","t112320","t120960","t127440","t131520","t138240","t146880","t155520","t164160","t172800"]
 i=0
 used_names = set()
 
@@ -26,7 +26,7 @@ with pd.ExcelWriter('Thermo_Elastic_Data.xlsx', engine='xlsxwriter') as writer:
         if file_name[i] != "_ASG1_GLOBAL_MODEL_assyfem1_sim1-EQNXBOL_nastran_":
             for j in range(len(time_steps)):
                 try:
-                    df = pd.read_csv(file_name[i] + time_steps[j] + ".dat", sep='\s+', header=None)
+                    df = pd.read_csv(file_name[i] + time_steps[j] + ".dat", sep='\\s+', header=None)
                     if not df.empty:
                         name = f"{file_name[i][33:38]}_{time_steps[j][1:8]}"
                         name = re.sub(r'[:\\/?*\[\]]', '_', name)
@@ -37,7 +37,7 @@ with pd.ExcelWriter('Thermo_Elastic_Data.xlsx', engine='xlsxwriter') as writer:
         else:
             for j in range(len(time_steps_1)):
                 try:
-                    df = pd.read_csv(file_name[i] + time_steps_1[j] + ".dat", sep='\s+', header=None)
+                    df = pd.read_csv(file_name[i] + time_steps_1[j] + ".dat", sep='\\s+', header=None)
                     if not df.empty:
                         name = f"{file_name[i][33:38]}_{time_steps_1[j][1:8]}"
                         name = re.sub(r'[:\\/?*\[\]]', '_', name)
