@@ -30,13 +30,13 @@ for i in range(0,len(Panels)):
 
 Main_Temp_List=[]
 
-for i in range(0,len(time_steps_EQNX)):
+for i in range(0,len(time_steps_Solstice)):
     Temp_List=[]
     for k in range (0,len(Node_List)):
     #for k in range (0,len(List)):
         List=Node_List[k]
         xlsx = pd.ExcelFile('Thermo_Elastic_Data.xlsx')
-        df = xlsx.parse("EQNXB_"+str(time_steps_EQNX[i]))
+        df = xlsx.parse("JSEOL_"+str(time_steps_Solstice[i]))
         df.columns = [" "," ",'Node', 'Temperature']
         b=[]
         for j in range(0,len(List)):
@@ -64,5 +64,5 @@ for i in range(0,len(Average_Temp_List)):
         sheet[str(Alpabet[i])+str(j+2)]=str(Average_Temp_List[i][j])
         print(j,"j")
         print(str(Alpabet[i]))
-wb.save("All_Node_Information_EQNX.xlsx")
+wb.save("All_Node_Information_JSEOL.xlsx")
 
